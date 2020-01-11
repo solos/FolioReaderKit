@@ -90,9 +90,11 @@ class FolioReaderPageIndicator: UIView {
         let pagesRemaining = self.folioReader.needsRTLChange ? totalPages-(totalPages-page+1) : totalPages-page
 
         if pagesRemaining == 1 {
-            pagesLabel.text = " " + self.readerConfig.localizedReaderOnePageLeft
+            //pagesLabel.text = " " + self.readerConfig.localizedReaderOnePageLeft
+            pagesLabel.text = "\(page) / \(totalPages!)"
         } else {
-            pagesLabel.text = " \(pagesRemaining) " + self.readerConfig.localizedReaderManyPagesLeft
+            //pagesLabel.text = " \(pagesRemaining) " + self.readerConfig.localizedReaderManyPagesLeft
+            pagesLabel.text = "\(page) / \(totalPages!)"
         }
 
         let minutesRemaining = Int(ceil(CGFloat((pagesRemaining * totalMinutes)/totalPages)))
