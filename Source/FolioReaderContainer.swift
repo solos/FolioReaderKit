@@ -80,9 +80,26 @@ open class FolioReaderContainer: UIViewController {
         FontBlaster.blast(bundle: Bundle.frameworkBundle())
 
         // Register initial defaults
+        
+        var darkMode = false
+        if #available(iOS 13.0, *) {
+            let current =  UITraitCollection.current
+            let s = current.userInterfaceStyle
+            
+            switch  (s) {
+                case .unspecified:
+                    darkMode = false
+                case .light:
+                    darkMode = false
+                case .dark:
+                    darkMode = true
+                default:
+                    darkMode = false
+            }
+        }
         self.folioReader.register(defaults: [
             kCurrentFontFamily: FolioReaderFont.andada.rawValue,
-            kNightMode: false,
+            kNightMode: darkMode,
             kCurrentFontSize: 2,
             kCurrentAudioRate: 1,
             kCurrentHighlightStyle: 0,
